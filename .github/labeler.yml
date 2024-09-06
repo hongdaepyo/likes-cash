@@ -1,0 +1,13 @@
+# Add labels here and on GitHub
+feature:
+  - head-branch: ['feature/*', 'feat/*']
+fix:
+  - head-branch: fix/*
+hotfix:
+  - head-branch: hotfix/*
+chore:
+  - head-branch: chore/*
+refactor:
+  - head-branch: ['refactor/*', 'refactoring/*']
+test:
+  - head-branch: test/*
