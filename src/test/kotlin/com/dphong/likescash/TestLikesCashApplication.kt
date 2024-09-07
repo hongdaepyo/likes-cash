@@ -5,5 +5,5 @@ import org.springframework.boot.with
 
 
 fun main(args: Array<String>) {
-	fromApplication<LikescashApplication>().with(TestcontainersConfiguration::class).run(*args)
+	fromApplication<LikesCashApplication>().with(TestcontainersConfiguration::class).run(*args)
 }
