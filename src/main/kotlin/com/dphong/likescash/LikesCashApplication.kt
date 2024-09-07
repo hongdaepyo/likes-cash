@@ -4,8 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class LikescashApplication
+class LikesCashApplication
 
 fun main(args: Array<String>) {
-	runApplication<LikescashApplication>(*args)
+	runApplication<LikesCashApplication>(*args)
 }
