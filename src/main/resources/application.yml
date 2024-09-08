@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: LikesCash
+
+config:
+  import:
+    - "optional:config/env.yml"

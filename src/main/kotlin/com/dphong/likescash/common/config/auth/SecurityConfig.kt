@@ -1,43 +1,68 @@
 package com.dphong.likescash.common.config.auth
 
+import com.dphong.likescash.common.utils.JwtTokenUtil
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpStatus
 import org.springframework.security.access.AccessDeniedException
+import org.springframework.security.authentication.AuthenticationManager
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
+import org.springframework.security.config.annotation.web.invoke
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.core.AuthenticationException
 import org.springframework.security.web.AuthenticationEntryPoint
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.access.AccessDeniedHandler
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 
 @EnableWebSecurity
 @Configuration
-class SecurityConfig {
+class SecurityConfig(
+    @Value("\${jwt.secret}") private val secret: String,
+    private val authenticationConfiguration: AuthenticationConfiguration
+) {
 
-    companion object {
-        val PERMIT_ALL_PATTERNS: Array<String> = arrayOf("/v1/member/sign-up")
+    @Bean
+    fun authenticationManger(): AuthenticationManager {
+        return authenticationConfiguration.authenticationManager
     }
 
     @Bean
-    fun filterChain(http: HttpSecurity): SecurityFilterChain =
-        http.httpBasic { it.disable() }
-            .csrf { it.disable() }
-            .cors { it.disable() }
-            .formLogin { it.disable() }
-            .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
-            .exceptionHandling {
-                it.accessDeniedHandler(JwtAccessDeniedHandler())
-                    .authenticationEntryPoint(JwtAuthenticationEntryPoint())
+    fun filterChain(http: HttpSecurity): SecurityFilterChain {
+        http {
+            httpBasic { disable() }
+            csrf { disable() }
+            cors { disable() }
+            formLogin { disable() }
+            exceptionHandling {
+                accessDeniedHandler = JwtAccessDeniedHandler()
+                authenticationEntryPoint = JwtAuthenticationEntryPoint()
             }
-            .authorizeHttpRequests {
-                it.requestMatchers(*PERMIT_ALL_PATTERNS).permitAll()
-                    .anyRequest().authenticated()
+            authorizeHttpRequests {
+                authorize("/v1/member/sign-in", permitAll)
+                authorize("/v1/member/sign-up", permitAll)
+                authorize(anyRequest, authenticated)
             }
-            .build()
+            addFilterBefore<LoginFilter>(JwtFilter(jwtTokenUtil()))
+            addFilterAt<UsernamePasswordAuthenticationFilter>(LoginFilter(authenticationManger(), jwtTokenUtil()))
+            sessionManagement {
+                sessionCreationPolicy = SessionCreationPolicy.STATELESS
+            }
+        }
+
+        return http.build()
+    }
+
+    @Bean
+    fun loginFilter(): LoginFilter = LoginFilter(authenticationManger(), jwtTokenUtil())
+
+    @Bean
+    fun jwtTokenUtil(): JwtTokenUtil = JwtTokenUtil(secret)
 }
 
 class JwtAccessDeniedHandler : AccessDeniedHandler {
