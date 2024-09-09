@@ -11,6 +11,6 @@ class CustomUserDetailsService(
 ) : UserDetailsService {
     override fun loadUserByUsername(username: String): UserDetails? {
         return memberRepository.findByUsernameOrNull(username)
-            ?.let { MemberDetails(it.id, it.username, it.password, it.role) }
+            ?.let { MemberDetails(it.id!!, it.username, it.password, it.role) }
     }
 }

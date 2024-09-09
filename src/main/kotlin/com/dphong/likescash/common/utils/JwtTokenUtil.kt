@@ -16,7 +16,7 @@ class JwtTokenUtil(private val secret: String) {
         generate(
             JWTClaimsSet.Builder()
                 .subject("likesCash")
-                .claim("id", id)
+                .claim("id", AESUtils.encrypt(id.toString()))
                 .claim("username", username)
                 .claim("role", role)
                 .issuer("com.dphong.likesCash")
@@ -28,23 +28,22 @@ class JwtTokenUtil(private val secret: String) {
     fun validateToken(token: String): Boolean {
         val signedJWT = SignedJWT.parse(token)
         val verifier = MACVerifier(secret)
+        // TODO: 토큰 검증시 예외처리
         return signedJWT.verify(verifier)
     }
 
     fun getClaimFromToken(token: String, key: String): String = getClaimsFromToken(token).claims[key].toString()
+
+    fun getIdFromToken(token: String): String = AESUtils.decrypt(getClaimFromToken(token, "id"))
 
     private fun getClaimsFromToken(token: String): JWTClaimsSet = SignedJWT.parse(token).jwtClaimsSet
 
     private fun getExpirationTime(): Date? = Date.from(Instant.now().plus(7, ChronoUnit.DAYS))
 
     private fun generate(claimsSet: JWTClaimsSet): String {
-        try {
-            val signer = MACSigner(secret)
-            val signedJWT = SignedJWT(JWSHeader(JWSAlgorithm.HS256), claimsSet)
-            signedJWT.sign(signer)
-            return signedJWT.serialize()
-        } catch (e: Exception) {
-            throw RuntimeException("fail to generate token", e)
-        }
+        val signer = MACSigner(secret)
+        val signedJWT = SignedJWT(JWSHeader(JWSAlgorithm.HS256), claimsSet)
+        signedJWT.sign(signer)
+        return signedJWT.serialize()
     }
 }

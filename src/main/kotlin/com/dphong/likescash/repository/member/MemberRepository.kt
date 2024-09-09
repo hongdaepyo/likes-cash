@@ -4,4 +4,5 @@ import com.dphong.likescash.domain.Member
 
 interface MemberRepository {
     fun findByUsernameOrNull(username: String): Member?
+    fun save(member: Member): Member
 }

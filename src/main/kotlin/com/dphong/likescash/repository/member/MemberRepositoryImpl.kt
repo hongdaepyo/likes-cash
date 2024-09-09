@@ -9,4 +9,7 @@ class MemberRepositoryImpl(
 ) : MemberRepository {
 
     override fun findByUsernameOrNull(username: String): Member? = memberJpaRepository.findByUsername(username)
+    override fun save(member: Member): Member {
+        return memberJpaRepository.save(member)
+    }
 }
