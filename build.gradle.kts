@@ -25,6 +25,9 @@ repositories {
 	mavenCentral()
 }
 
+val nimbusJoseVersion = "9.40"
+val mysqlConnectorVersion = "9.40"
+
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-data-redis")
@@ -34,14 +37,22 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
-	runtimeOnly("com.h2database:h2")
 	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+
+	// https://mvnrepository.com/artifact/com.nimbusds/nimbus-jose-jwt
+	implementation("com.nimbusds:nimbus-jose-jwt:$nimbusJoseVersion")
+
+	runtimeOnly("com.mysql:mysql-connector-j:$mysqlConnectorVersion")
+
+	// test
+	runtimeOnly("com.h2database:h2")
+	testImplementation("org.testcontainers:junit-jupiter")
+	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.boot:spring-boot-testcontainers")
-	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testImplementation("org.springframework.security:spring-security-test")
-	testImplementation("org.testcontainers:junit-jupiter")
-	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 kotlin {

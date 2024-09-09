@@ -1,4 +1,4 @@
-package com.dphong.likescash.api.member
+package com.dphong.likescash.api.member.controller
 
 import com.dphong.likescash.common.config.auth.SecurityConfig
 import org.junit.jupiter.api.Test
@@ -21,6 +21,16 @@ class SignUpMemberControllerTest(
         mockMvc.perform(
             post("/v1/member/sign-up")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
+        ).andExpect { status().isOk }
+    }
+
+    @Test
+    fun `회원 로그인을 성공한다`() {
+        mockMvc.perform(
+            post("/login")
+                .formField("username", "test")
+                .formField("password", "test")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
         ).andExpect { status().isOk }
     }
 }
