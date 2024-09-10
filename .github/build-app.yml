@@ -1,0 +1,37 @@
+name: Build App and Run Tests
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check for rebase
+        run: |
+          git fetch origin ${{ github.event.pull_request.base.ref }}
+          if git merge-base --is-ancestor origin/${{ github.event.pull_request.base.ref }} HEAD; then
+            echo "Branch is rebased"
+          else
+            echo "Branch is not rebased"
+            exit 1
+          fi
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: 'gradle'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build App with Gradle
+        run: ./gradlew build --parallel --build-cache
