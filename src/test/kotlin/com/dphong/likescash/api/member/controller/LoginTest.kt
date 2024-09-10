@@ -13,7 +13,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 
 @TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
-@SpringBootTest(value = ["jwt.secret=valid_secret_key"])
+@SpringBootTest(value = ["jwt.secret=q6p7GFEUDNDa5ZeMnUSlskSELygL8zGfBswd4yj0308="])
 @AutoConfigureMockMvc
 class LoginTest(
     private val mockMvc: MockMvc,
