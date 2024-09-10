@@ -18,7 +18,7 @@ class JwtFilter(private val tokenUtil: JwtTokenUtil): OncePerRequestFilter() {
 
         val token = extractToken(request)
         if (token.isNotBlank() && tokenUtil.validateToken(token)) {
-            val id = tokenUtil.getClaimFromToken(token, "id").toLong()
+            val id = tokenUtil.getIdFromToken(token).toLong()
             val username = tokenUtil.getClaimFromToken(token, "username")
             val role = tokenUtil.getClaimFromToken(token, "role")
 
@@ -31,7 +31,7 @@ class JwtFilter(private val tokenUtil: JwtTokenUtil): OncePerRequestFilter() {
         filterChain.doFilter(request, response)
     }
 
-    fun extractToken(request: HttpServletRequest) =
+    private fun extractToken(request: HttpServletRequest) =
         request.getHeader(HttpHeaders.AUTHORIZATION)
             ?.substringAfter("Bearer ")
             .orEmpty()

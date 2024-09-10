@@ -13,7 +13,7 @@ import org.springframework.security.core.AuthenticationException
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 
 class LoginFilter(
-    private val authenticationManager: AuthenticationManager,
+    authenticationManager: AuthenticationManager,
     private val tokenUtil: JwtTokenUtil
 ) : UsernamePasswordAuthenticationFilter(authenticationManager) {
     override fun attemptAuthentication(request: HttpServletRequest?, response: HttpServletResponse?): Authentication {
@@ -33,10 +33,13 @@ class LoginFilter(
         val username = memberDetails.username
         val role = memberDetails.authorities.firstOrNull()?.authority
         val memberId = memberDetails.getId()
-        val token = tokenUtil.generateToken(memberId, username, role.orEmpty())
+        val token = createJwtToken(memberId, username, role)
 
         response.addHeader(HttpHeaders.AUTHORIZATION, "Bearer $token")
     }
+
+    private fun createJwtToken(memberId: Long, username: String, role: String?) =
+        tokenUtil.generateToken(memberId, username, role.orEmpty())
 
     override fun unsuccessfulAuthentication(
         request: HttpServletRequest?,
