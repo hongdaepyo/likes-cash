@@ -20,6 +20,7 @@ class FakeConfiguration {
             csrf { disable() }
             authorizeHttpRequests {
                 authorize("/v1/member/sign-up", permitAll)
+                authorize("/v1/products", permitAll)
                 authorize(anyRequest, authenticated)
             }
         }

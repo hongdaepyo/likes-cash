@@ -7,7 +7,11 @@ import org.springframework.stereotype.Repository
 class ProductRepositoryImpl(
     private val productJpaRepository: ProductJpaRepository
 ) : ProductRepository {
+
     override fun save(product: Product): Product {
         return productJpaRepository.save(product)
     }
+
+    override fun findAll(): List<Product> =
+        productJpaRepository.findAll().filter { it.isVisible }
 }
