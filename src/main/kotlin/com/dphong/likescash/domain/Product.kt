@@ -18,6 +18,12 @@ class Product(
         fun of(name: String, seller: Member): Product = Product(null, name, seller)
     }
 
+    var isVisible: Boolean = false
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "product", cascade = [CascadeType.ALL], orphanRemoval = true)
     val missions: MutableList<ProductMission> = mutableListOf()
+
+    fun approval() {
+        isVisible = true
+    }
 }

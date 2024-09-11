@@ -5,9 +5,11 @@ import com.dphong.likescash.mock.FakeConfiguration
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.context.annotation.Import
 import org.springframework.core.annotation.AliasFor
+import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.TestConstructor
 import kotlin.reflect.KClass
 
+@ActiveProfiles("test")
 @Import(FakeConfiguration::class, WebConfig::class)
 @TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
 @WebMvcTest
