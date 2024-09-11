@@ -49,7 +49,6 @@ class SecurityConfig(
                 authenticationEntryPoint = JwtAuthenticationEntryPoint()
             }
             authorizeHttpRequests {
-                authorize("/v1/member/sign-in", permitAll)
                 authorize("/v1/member/sign-up", permitAll)
                 authorize(anyRequest, authenticated)
             }
