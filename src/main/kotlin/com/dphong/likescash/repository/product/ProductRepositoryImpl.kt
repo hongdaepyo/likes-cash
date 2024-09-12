@@ -1,6 +1,6 @@
 package com.dphong.likescash.repository.product
 
-import com.dphong.likescash.domain.Product
+import com.dphong.likescash.domain.product.Product
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Repository
 

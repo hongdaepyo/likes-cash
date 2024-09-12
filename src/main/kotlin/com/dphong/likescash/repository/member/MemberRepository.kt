@@ -1,7 +1,7 @@
 package com.dphong.likescash.repository.member
 
-import com.dphong.likescash.domain.Member
-import com.dphong.likescash.domain.MemberRole
+import com.dphong.likescash.domain.member.Member
+import com.dphong.likescash.domain.member.MemberRole
 
 interface MemberRepository {
     fun findByUsernameOrNull(username: String): Member?

@@ -1,7 +1,7 @@
 package com.dphong.likescash.common.config.auth
 
 import com.dphong.likescash.common.utils.JwtTokenUtil
-import com.dphong.likescash.domain.MemberRole
+import com.dphong.likescash.domain.member.MemberRole
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse

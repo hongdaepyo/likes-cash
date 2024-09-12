@@ -1,6 +1,6 @@
 package com.dphong.likescash.api.member.controller
 
-import com.dphong.likescash.domain.Member
+import com.dphong.likescash.domain.member.Member
 import com.dphong.likescash.repository.member.MemberRepository
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc

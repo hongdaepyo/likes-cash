@@ -1,6 +1,6 @@
 package com.dphong.likescash.common.config.auth
 
-import com.dphong.likescash.domain.MemberRole
+import com.dphong.likescash.domain.member.MemberRole
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails

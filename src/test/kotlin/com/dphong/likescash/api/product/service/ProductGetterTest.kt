@@ -1,7 +1,7 @@
 package com.dphong.likescash.api.product.service
 
-import com.dphong.likescash.domain.Product
-import com.dphong.likescash.domain.ProductMission
+import com.dphong.likescash.domain.product.Product
+import com.dphong.likescash.domain.product.ProductMission
 import com.dphong.likescash.fixtures.MemberFixture
 import com.dphong.likescash.mock.FakeProductRepository
 import org.assertj.core.api.Assertions.assertThat

@@ -1,6 +1,6 @@
 package com.dphong.likescash.mock
 
-import com.dphong.likescash.domain.Product
+import com.dphong.likescash.domain.product.Product
 import com.dphong.likescash.repository.product.ProductRepository
 
 class FakeProductRepository : ProductRepository, AbstractFakeRepository<Product>() {

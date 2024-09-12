@@ -1,6 +1,6 @@
 package com.dphong.likescash.common.config.auth
 
-import com.dphong.likescash.domain.MemberRole
+import com.dphong.likescash.domain.member.MemberRole
 
 data class MemberFacade(val memberDetails: MemberDetails) {
     val memberId: Long get() = memberDetails.getId()

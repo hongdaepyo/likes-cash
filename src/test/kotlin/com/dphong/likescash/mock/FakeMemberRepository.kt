@@ -1,7 +1,7 @@
 package com.dphong.likescash.mock
 
-import com.dphong.likescash.domain.Member
-import com.dphong.likescash.domain.MemberRole
+import com.dphong.likescash.domain.member.Member
+import com.dphong.likescash.domain.member.MemberRole
 import com.dphong.likescash.repository.member.MemberRepository
 
 class FakeMemberRepository : MemberRepository, AbstractFakeRepository<Member>() {
