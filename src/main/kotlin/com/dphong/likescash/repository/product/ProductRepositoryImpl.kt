@@ -1,6 +1,7 @@
 package com.dphong.likescash.repository.product
 
 import com.dphong.likescash.domain.Product
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Repository
 
 @Repository
@@ -14,4 +15,8 @@ class ProductRepositoryImpl(
 
     override fun findAll(): List<Product> =
         productJpaRepository.findAll().filter { it.isVisible }
+
+    override fun findByIdOrNull(productId: Long): Product? {
+        return productJpaRepository.findByIdOrNull(productId)
+    }
 }
