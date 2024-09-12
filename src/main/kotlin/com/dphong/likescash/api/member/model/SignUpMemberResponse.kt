@@ -1,6 +1,6 @@
 package com.dphong.likescash.api.member.model
 
-import com.dphong.likescash.domain.Member
+import com.dphong.likescash.domain.member.Member
 
 data class SignUpMemberResponse(
     val id: Long?,

@@ -2,7 +2,7 @@ package com.dphong.likescash.mock
 
 import com.dphong.likescash.common.config.auth.MemberAuthenticationToken
 import com.dphong.likescash.common.config.auth.MemberDetails
-import com.dphong.likescash.domain.MemberRole
+import com.dphong.likescash.domain.member.MemberRole
 import org.springframework.security.core.Authentication
 
 enum class FakeAuthentication(val authentication: Authentication) {

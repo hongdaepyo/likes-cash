@@ -1,6 +1,6 @@
 package com.dphong.likescash.api.product.model
 
-import com.dphong.likescash.domain.Product
+import com.dphong.likescash.domain.product.Product
 
 data class ProductDetails(
     val id: Long,

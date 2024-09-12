@@ -1,6 +1,6 @@
 package com.dphong.likescash.repository.product
 
-import com.dphong.likescash.domain.Product
+import com.dphong.likescash.domain.product.Product
 
 interface ProductRepository {
 

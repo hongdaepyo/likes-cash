@@ -1,5 +1,7 @@
-package com.dphong.likescash.domain
+package com.dphong.likescash.domain.product
 
+import com.dphong.likescash.domain.BaseEntity
+import com.dphong.likescash.domain.member.Member
 import jakarta.persistence.*
 
 @Table(name = "products")

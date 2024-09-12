@@ -4,7 +4,7 @@ import com.dphong.likescash.api.member.model.SignUpMemberRequest
 import com.dphong.likescash.api.member.model.SignUpMemberResponse
 import com.dphong.likescash.api.member.model.SignUpMemberStatus
 import com.dphong.likescash.common.reponse.StatusDataResult
-import com.dphong.likescash.domain.Member
+import com.dphong.likescash.domain.member.Member
 import com.dphong.likescash.repository.member.MemberRepository
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service

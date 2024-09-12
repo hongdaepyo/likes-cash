@@ -1,8 +1,8 @@
 package com.dphong.likescash.repository.product
 
 import com.dphong.likescash.RepositoryTest
-import com.dphong.likescash.domain.Member
-import com.dphong.likescash.domain.Product
+import com.dphong.likescash.domain.member.Member
+import com.dphong.likescash.domain.product.Product
 import com.dphong.likescash.fixtures.MemberFixture
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
