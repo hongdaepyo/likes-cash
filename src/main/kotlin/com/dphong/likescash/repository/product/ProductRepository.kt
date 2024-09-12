@@ -6,4 +6,5 @@ interface ProductRepository {
 
     fun save(product: Product): Product
     fun findAll(): List<Product>
+    fun findByIdOrNull(productId: Long): Product?
 }

@@ -1,9 +1,10 @@
 package com.dphong.likescash.api.product
 
+import com.dphong.likescash.api.product.model.ProductDetails
 import com.dphong.likescash.common.reponse.DataResult
-import com.dphong.likescash.domain.Product
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -14,6 +15,10 @@ class ProductController(
 ) {
 
     @GetMapping
-    fun getProducts(): ResponseEntity<DataResult<List<Product>>> =
+    fun getProducts(): ResponseEntity<DataResult<List<ProductDetails>>> =
         productGetter.getProducts().toResponseEntity()
+
+    @GetMapping("/{productId}")
+    fun getProductDetails(@PathVariable productId: Long): ResponseEntity<DataResult<ProductDetails>> =
+        productGetter.getProductDetails(productId).toResponseEntity()
 }

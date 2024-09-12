@@ -14,4 +14,8 @@ class ProductMission(
 ) : BaseEntity<Long>() {
 
     var topic: String? = null
+
+    fun updateTopic(topic: String) {
+        this.topic = topic
+    }
 }

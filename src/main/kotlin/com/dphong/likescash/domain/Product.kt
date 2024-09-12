@@ -26,4 +26,8 @@ class Product(
     fun approval() {
         isVisible = true
     }
+
+    fun addMission(mission: ProductMission) {
+        missions.add(mission)
+    }
 }

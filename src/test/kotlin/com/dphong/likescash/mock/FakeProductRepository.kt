@@ -25,4 +25,8 @@ class FakeProductRepository : ProductRepository, AbstractFakeRepository<Product>
         return data.filter { it.isVisible }
     }
 
+    override fun findByIdOrNull(productId: Long): Product? {
+        return data.find { it.id == productId }
+    }
+
 }
