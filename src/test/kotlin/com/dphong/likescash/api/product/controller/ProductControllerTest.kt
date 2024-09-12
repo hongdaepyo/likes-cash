@@ -1,7 +1,8 @@
-package com.dphong.likescash.api.product
+package com.dphong.likescash.api.product.controller
 
 import com.dphong.likescash.BaseWebMvcTest
 import com.dphong.likescash.api.product.model.ProductDetails
+import com.dphong.likescash.api.product.service.ProductGetter
 import com.dphong.likescash.common.reponse.DataResult
 import com.dphong.likescash.domain.Product
 import com.dphong.likescash.fixtures.MemberFixture

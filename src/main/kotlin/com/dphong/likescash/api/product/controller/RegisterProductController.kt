@@ -1,8 +1,9 @@
-package com.dphong.likescash.api.product
+package com.dphong.likescash.api.product.controller
 
 import com.dphong.likescash.api.product.model.RegisterProductRequest
 import com.dphong.likescash.api.product.model.RegisterProductResponse
 import com.dphong.likescash.api.product.model.RegisterProductStatus
+import com.dphong.likescash.api.product.service.RegisterProductService
 import com.dphong.likescash.common.annotation.LoginMember
 import com.dphong.likescash.common.config.auth.MemberFacade
 import com.dphong.likescash.common.reponse.StatusDataResult
