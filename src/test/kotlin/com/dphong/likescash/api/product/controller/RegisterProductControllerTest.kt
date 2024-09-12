@@ -1,9 +1,10 @@
-package com.dphong.likescash.api.product
+package com.dphong.likescash.api.product.controller
 
 import com.dphong.likescash.BaseWebMvcTest
 import com.dphong.likescash.api.product.model.RegisterProductRequest
 import com.dphong.likescash.api.product.model.RegisterProductResponse
 import com.dphong.likescash.api.product.model.RegisterProductStatus
+import com.dphong.likescash.api.product.service.RegisterProductService
 import com.dphong.likescash.common.reponse.StatusDataResult
 import com.dphong.likescash.mock.FakeAuthentication
 import com.fasterxml.jackson.databind.ObjectMapper

@@ -1,4 +1,4 @@
-package com.dphong.likescash.api.product
+package com.dphong.likescash.api.product.service
 
 import com.dphong.likescash.domain.Product
 import com.dphong.likescash.domain.ProductMission

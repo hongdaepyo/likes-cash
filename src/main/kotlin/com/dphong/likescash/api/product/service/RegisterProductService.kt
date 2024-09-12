@@ -1,4 +1,4 @@
-package com.dphong.likescash.api.product
+package com.dphong.likescash.api.product.service
 
 import com.dphong.likescash.api.product.model.RegisterProductRequest
 import com.dphong.likescash.api.product.model.RegisterProductResponse
