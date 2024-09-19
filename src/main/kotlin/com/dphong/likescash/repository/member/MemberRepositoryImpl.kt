@@ -2,6 +2,7 @@ package com.dphong.likescash.repository.member
 
 import com.dphong.likescash.domain.member.Member
 import com.dphong.likescash.domain.member.MemberRole
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Repository
 
 @Repository
@@ -18,5 +19,9 @@ class MemberRepositoryImpl(
 
     override fun findByIdAndRole(id: Long, role: MemberRole): Member? {
         return memberJpaRepository.findByIdAndRole(id, role)
+    }
+
+    override fun findByIdOrNull(id: Long): Member? {
+        return memberJpaRepository.findByIdOrNull(id)
     }
 }

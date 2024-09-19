@@ -25,4 +25,7 @@ class Post(
 
     val submittedAt: Instant
         get() = createdAt
+
+    @Embedded
+    var reaction: PostReaction = PostReaction(0)
 }
