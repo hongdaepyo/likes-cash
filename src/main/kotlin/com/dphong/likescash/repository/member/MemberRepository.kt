@@ -7,4 +7,5 @@ interface MemberRepository {
     fun findByUsernameOrNull(username: String): Member?
     fun save(member: Member): Member
     fun findByIdAndRole(id: Long, role: MemberRole): Member?
+    fun findByIdOrNull(id: Long): Member?
 }

@@ -14,6 +14,10 @@ class FakeMemberRepository : MemberRepository, AbstractFakeRepository<Member>() 
         return data.firstOrNull { it.id == id && it.role == role }
     }
 
+    override fun findByIdOrNull(id: Long): Member? {
+        return data.firstOrNull { it.id == id }
+    }
+
     override fun save(member: Member): Member =
         if (member.id == null || member.id == 0L) {
             val newMember = Member(

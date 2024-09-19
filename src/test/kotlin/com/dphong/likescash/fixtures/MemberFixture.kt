@@ -5,5 +5,6 @@ import com.dphong.likescash.domain.member.MemberRole
 
 object MemberFixture {
 
-    fun seller() = Member(null, "testName", "testPassword", "testName", MemberRole.SELLER)
+    fun user(id: Long? = null) = Member(id, "testName", "testPassword", "testName", MemberRole.USER)
+    fun seller(id: Long? = null) = Member(id, "testName", "testPassword", "testName", MemberRole.SELLER)
 }
