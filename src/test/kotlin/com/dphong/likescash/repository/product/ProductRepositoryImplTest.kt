@@ -4,14 +4,17 @@ import com.dphong.likescash.RepositoryTest
 import com.dphong.likescash.domain.member.Member
 import com.dphong.likescash.domain.product.Product
 import com.dphong.likescash.fixtures.MemberFixture
+import com.dphong.likescash.fixtures.ProductFixture
+import com.querydsl.jpa.impl.JPAQueryFactory
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class ProductRepositoryImplTest(
-    private val productJpaRepository: ProductJpaRepository
+    private val productJpaRepository: ProductJpaRepository,
+    factory: JPAQueryFactory
 ) : RepositoryTest() {
 
-    private val repository: ProductRepository = ProductRepositoryImpl(productJpaRepository)
+    private val repository: ProductRepository = ProductRepositoryImpl(productJpaRepository, factory)
 
     @Test
     fun `상품을 저장한다`() {
@@ -52,5 +55,5 @@ class ProductRepositoryImplTest(
     }
 
     private fun createVisibleProduct(name: String, seller: Member): Product =
-        Product.of(name, seller).apply { approval() }
+        ProductFixture.createVisible(name = name, seller = seller)
 }

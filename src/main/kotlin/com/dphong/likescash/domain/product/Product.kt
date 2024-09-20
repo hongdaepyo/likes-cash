@@ -17,10 +17,21 @@ class Product(
 ) : BaseEntity<Long>() {
 
     companion object {
-        fun of(name: String, seller: Member): Product = Product(null, name, seller)
+        fun of(
+            name: String,
+            seller: Member,
+            schedule: ProductSchedule = ProductSchedule.DISABLED
+        ): Product =
+            Product(null, name, seller).apply {
+                this.schedule = schedule
+            }
     }
 
     var isVisible: Boolean = false
+
+    @Embedded
+    var schedule: ProductSchedule = ProductSchedule.DISABLED
+
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "product", cascade = [CascadeType.ALL], orphanRemoval = true)
     val missions: MutableList<ProductMission> = mutableListOf()
@@ -31,5 +42,9 @@ class Product(
 
     fun addMission(mission: ProductMission) {
         missions.add(mission)
+    }
+
+    fun updateSchedule(schedule: ProductSchedule) {
+        this.schedule = schedule
     }
 }
