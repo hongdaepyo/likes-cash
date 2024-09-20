@@ -6,6 +6,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.1.6"
 	kotlin("plugin.jpa") version kotlinVersion
 	kotlin("plugin.allopen") version kotlinVersion
+	kotlin("kapt") version kotlinVersion
 }
 
 group = "com.dphong"
@@ -46,6 +47,10 @@ dependencies {
 
 	runtimeOnly("com.mysql:mysql-connector-j:$mysqlConnectorVersion")
 
+	// querydsl
+	implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
+	kapt("com.querydsl:querydsl-apt:5.0.0:jakarta")
+
 	// test
 	runtimeOnly("com.h2database:h2")
 	testImplementation("org.testcontainers:junit-jupiter")
@@ -61,6 +66,10 @@ kotlin {
 	compilerOptions {
 		freeCompilerArgs.addAll("-Xjsr305=strict")
 	}
+}
+
+noArg {
+	annotation("javax.persistence.Entity")
 }
 
 allOpen {

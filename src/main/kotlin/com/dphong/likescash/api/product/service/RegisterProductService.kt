@@ -20,6 +20,7 @@ class RegisterProductService(
         val seller = memberRepository.findByIdAndRole(sellerId, MemberRole.SELLER)
             ?: return StatusDataResult(RegisterProductStatus.SELLER_NOT_FOUND)
 
+        // TODO: 노출일자 관련 유효성 검사
         val product = productRepository.save(request.toProduct(seller))
         return StatusDataResult(
             RegisterProductStatus.SUCCESS,

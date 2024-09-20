@@ -2,7 +2,7 @@ package com.dphong.likescash.api.product.service
 
 import com.dphong.likescash.domain.product.Product
 import com.dphong.likescash.domain.product.ProductMission
-import com.dphong.likescash.fixtures.MemberFixture
+import com.dphong.likescash.fixtures.ProductFixture
 import com.dphong.likescash.mock.FakeProductRepository
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -44,16 +44,10 @@ class ProductGetterTest {
     }
 
     private fun saveInvisibleProduct(): Product {
-        return productRepository.save(
-            Product.of("testProduct2", MemberFixture.seller())
-        )
+        return productRepository.save(ProductFixture.create())
     }
 
     private fun saveVisibleProduct(): Product {
-        return productRepository.save(
-            Product.of("testProduct1", MemberFixture.seller()).apply {
-                approval()
-            }
-        )
+        return productRepository.save(ProductFixture.createVisible())
     }
 }
