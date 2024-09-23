@@ -6,4 +6,5 @@ interface PostRepository {
 
     fun save(post: Post): Post
     fun findAllByProductId(productId: Long): List<Post>
+    fun findByIdOrNull(id: Long): Post?
 }
