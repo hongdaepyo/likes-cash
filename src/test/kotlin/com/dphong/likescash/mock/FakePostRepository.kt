@@ -25,4 +25,8 @@ class FakePostRepository: PostRepository, AbstractFakeRepository<Post>() {
     override fun findAllByProductId(productId: Long): List<Post> {
         return data.filter { it.product.id == productId }
     }
+
+    override fun findByIdOrNull(id: Long): Post? {
+        return data.find { it.id == id }
+    }
 }
