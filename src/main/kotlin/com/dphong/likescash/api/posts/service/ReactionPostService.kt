@@ -24,6 +24,9 @@ class ReactionPostService(
         val post: Post = postRepository.findByIdOrNull(postId)
             ?: return StatusDataResult(ReactionPostStatus.POST_NOT_FOUND)
 
+        likesRepository.findByMemberIdAndPostId(member.id!!, post.id!!)?.let {
+            return StatusDataResult(ReactionPostStatus.ALREADY_LIKED, ReactionPostResponse.from(post.reaction))
+        }
         likesRepository.save(member.likes(post))
         post.addLikes()
         return StatusDataResult(ReactionPostStatus.SUCCESS, ReactionPostResponse.from(post.reaction))
