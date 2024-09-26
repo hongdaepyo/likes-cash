@@ -23,4 +23,8 @@ class FakeLikesRepository : LikesRepository, AbstractFakeRepository<Likes>() {
     override fun findByMemberIdAndPostId(memberId: Long, postId: Long): Likes? {
         return data.firstOrNull { it.memberId == memberId && it.postId == postId }
     }
+
+    override fun delete(likes: Likes) {
+        data.removeIf { it.id == likes.id }
+    }
 }

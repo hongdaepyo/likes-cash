@@ -33,4 +33,8 @@ class Post(
     fun addLikes() {
         this.reaction.likesCount++
     }
+
+    fun removeLikes() {
+        this.reaction.likesCount--
+    }
 }

@@ -4,5 +4,6 @@ enum class ReactionPostStatus {
     SUCCESS,
     MEMBER_NOT_FOUND,
     POST_NOT_FOUND,
+    LIKES_NOT_FOUND,
     ALREADY_LIKED
 }

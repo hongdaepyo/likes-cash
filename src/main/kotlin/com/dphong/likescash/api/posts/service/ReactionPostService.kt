@@ -31,4 +31,18 @@ class ReactionPostService(
         post.addLikes()
         return StatusDataResult(ReactionPostStatus.SUCCESS, ReactionPostResponse.from(post.reaction))
     }
+
+    @Transactional
+    fun cancelLikes(memberId: Long, postId: Long): StatusDataResult<ReactionPostStatus, ReactionPostResponse> {
+        val member = memberRepository.findByIdOrNull(memberId)
+            ?: return StatusDataResult(ReactionPostStatus.MEMBER_NOT_FOUND)
+        val post: Post = postRepository.findByIdOrNull(postId)
+            ?: return StatusDataResult(ReactionPostStatus.POST_NOT_FOUND)
+        likesRepository.findByMemberIdAndPostId(member.id!!, post.id!!)?.let { likes ->
+            likesRepository.delete(likes)
+            post.removeLikes()
+        } ?: return StatusDataResult(ReactionPostStatus.LIKES_NOT_FOUND, ReactionPostResponse.from(post.reaction))
+
+        return StatusDataResult(ReactionPostStatus.SUCCESS, ReactionPostResponse.from(post.reaction))
+    }
 }

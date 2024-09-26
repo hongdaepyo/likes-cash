@@ -26,7 +26,7 @@ class ReactionPostServiceTest {
     }
 
     @Test
-    fun `게시물에 좋아요를 한다`() {
+    fun `게시물에 좋아요를 추가한다`() {
         // given
         val member = memberRepository.save(MemberFixture.user())
         val post = postRepository.save(PostFixture.create(member = member))
@@ -78,5 +78,28 @@ class ReactionPostServiceTest {
 
         // then
         assertThat(result.status).isEqualTo(ReactionPostStatus.ALREADY_LIKED)
+    }
+
+    @Test
+    fun `좋아요를 취소한다`() {
+        val member = memberRepository.save(MemberFixture.user())
+        val post = postRepository.save(PostFixture.create(member = member))
+        service.likes(member.id!!, post.id!!)
+        val before = post.reaction.likesCount
+
+        val result = service.cancelLikes(member.id!!, post.id!!)
+        assertThat(result.status).isEqualTo(ReactionPostStatus.SUCCESS)
+        assertThat(result.data!!.likesCount).isEqualTo(before - 1)
+    }
+
+    @Test
+    fun `좋아요 하지 않은 게시물의 좋아요를 취소하면 LIKES_NOT_FOUND를 응답한다`() {
+        val member = memberRepository.save(MemberFixture.user())
+        val post = postRepository.save(PostFixture.create(member = member))
+        val before = post.reaction.likesCount
+
+        val result = service.cancelLikes(member.id!!, post.id!!)
+        assertThat(result.status).isEqualTo(ReactionPostStatus.LIKES_NOT_FOUND)
+        assertThat(result.data!!.likesCount).isEqualTo(before)
     }
 }
