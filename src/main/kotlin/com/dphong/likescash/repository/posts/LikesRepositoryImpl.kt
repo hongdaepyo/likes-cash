@@ -15,4 +15,8 @@ class LikesRepositoryImpl(
     override fun findByMemberIdAndPostId(memberId: Long, postId: Long): Likes? {
         return likesJpaRepository.findByMemberIdAndPostId(memberId, postId)
     }
+
+    override fun delete(likes: Likes) {
+        likesJpaRepository.delete(likes)
+    }
 }

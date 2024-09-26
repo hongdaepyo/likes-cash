@@ -12,7 +12,8 @@ import org.mockito.BDDMockito.given
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.test.web.servlet.MockMvc
-import org.springframework.test.web.servlet.put
+import org.springframework.test.web.servlet.delete
+import org.springframework.test.web.servlet.post
 
 @BaseWebMvcTest([ReactionPostController::class])
 class ReactionPostControllerTest(
@@ -21,16 +22,30 @@ class ReactionPostControllerTest(
 ) {
 
     @Test
-    fun `게시물에 좋아요를 한다`() {
+    fun `게시물에 좋아요를 추가한다`() {
         SecurityContextHolder.getContext().authentication = FakeAuthentication.MEMBER.authentication
         given(reactionPostService.likes(anyLong(), anyLong())).willReturn(
             StatusDataResult(ReactionPostStatus.SUCCESS, ReactionPostResponse(1))
         )
 
-        mockMvc.put("/v1/posts/1/likes")
+        mockMvc.post("/v1/posts/1/likes")
             .andExpect {
                 status { isOk() }
                 jsonPath("$.data.likesCount") { value(1) }
+            }
+    }
+
+    @Test
+    fun `게시물에 좋아요를 취소한다`() {
+        SecurityContextHolder.getContext().authentication = FakeAuthentication.MEMBER.authentication
+        given(reactionPostService.cancelLikes(anyLong(), anyLong())).willReturn(
+            StatusDataResult(ReactionPostStatus.SUCCESS, ReactionPostResponse(2))
+        )
+
+        mockMvc.delete("/v1/posts/1/likes")
+            .andExpect {
+                status { isOk() }
+                jsonPath("$.data.likesCount") { value(2) }
             }
     }
 }
