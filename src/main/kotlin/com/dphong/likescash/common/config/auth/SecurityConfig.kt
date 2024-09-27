@@ -52,6 +52,7 @@ class SecurityConfig(
             authorizeHttpRequests {
                 authorize("/v1/member/sign-up", permitAll)
                 authorize(HttpMethod.GET, "/v1/products/**", permitAll)
+                authorize(HttpMethod.GET, "/healthcheck", permitAll)
                 authorize(anyRequest, authenticated)
             }
             addFilterBefore<LoginFilter>(JwtFilter(jwtTokenUtil()))
