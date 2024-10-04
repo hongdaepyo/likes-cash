@@ -3,7 +3,7 @@ package com.dphong.likescash.api.posts.service
 import com.dphong.likescash.api.posts.model.SubmitPostRequest
 import com.dphong.likescash.api.posts.model.SubmitPostResponse
 import com.dphong.likescash.api.posts.model.SubmitPostStatus
-import com.dphong.likescash.common.reponse.StatusDataResult
+import com.dphong.likescash.common.response.StatusDataResult
 import com.dphong.likescash.domain.posts.Post
 import com.dphong.likescash.repository.member.MemberRepository
 import com.dphong.likescash.repository.posts.PostRepository

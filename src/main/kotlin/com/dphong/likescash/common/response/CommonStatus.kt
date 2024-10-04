@@ -1,4 +1,4 @@
-package com.dphong.likescash.common.reponse
+package com.dphong.likescash.common.response
 
 enum class CommonStatus {
     SUCCESS,

@@ -3,7 +3,7 @@ package com.dphong.likescash.api.posts.controller
 import com.dphong.likescash.BaseWebMvcTest
 import com.dphong.likescash.api.posts.model.PostDetails
 import com.dphong.likescash.api.posts.service.PostGetter
-import com.dphong.likescash.common.reponse.DataResult
+import com.dphong.likescash.common.response.DataResult
 import com.dphong.likescash.domain.posts.PostReaction
 import com.dphong.likescash.mock.FakeAuthentication
 import org.junit.jupiter.api.Test

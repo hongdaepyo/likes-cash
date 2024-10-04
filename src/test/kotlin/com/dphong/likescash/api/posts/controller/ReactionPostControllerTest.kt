@@ -4,7 +4,7 @@ import com.dphong.likescash.BaseWebMvcTest
 import com.dphong.likescash.api.posts.model.ReactionPostResponse
 import com.dphong.likescash.api.posts.model.ReactionPostStatus
 import com.dphong.likescash.api.posts.service.ReactionPostService
-import com.dphong.likescash.common.reponse.StatusDataResult
+import com.dphong.likescash.common.response.StatusDataResult
 import com.dphong.likescash.mock.FakeAuthentication
 import org.junit.jupiter.api.Test
 import org.mockito.ArgumentMatchers.anyLong

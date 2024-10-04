@@ -6,7 +6,7 @@ import com.dphong.likescash.api.product.model.RegisterProductStatus
 import com.dphong.likescash.api.product.service.RegisterProductService
 import com.dphong.likescash.common.annotation.LoginMember
 import com.dphong.likescash.common.config.auth.MemberFacade
-import com.dphong.likescash.common.reponse.StatusDataResult
+import com.dphong.likescash.common.response.StatusDataResult
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody

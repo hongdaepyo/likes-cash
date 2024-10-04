@@ -2,7 +2,7 @@ package com.dphong.likescash.api.posts.service
 
 import com.dphong.likescash.api.posts.model.PostDetails
 import com.dphong.likescash.common.annotation.ReadOnlyService
-import com.dphong.likescash.common.reponse.DataResult
+import com.dphong.likescash.common.response.DataResult
 import com.dphong.likescash.repository.posts.PostRepository
 
 @ReadOnlyService

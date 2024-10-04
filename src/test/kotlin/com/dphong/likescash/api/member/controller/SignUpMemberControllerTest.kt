@@ -5,7 +5,7 @@ import com.dphong.likescash.api.member.model.SignUpMemberRequest
 import com.dphong.likescash.api.member.model.SignUpMemberResponse
 import com.dphong.likescash.api.member.model.SignUpMemberStatus
 import com.dphong.likescash.api.member.service.SignUpMemberService
-import com.dphong.likescash.common.reponse.StatusDataResult
+import com.dphong.likescash.common.response.StatusDataResult
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.junit.jupiter.api.Test
 import org.mockito.BDDMockito.given

@@ -5,7 +5,7 @@ import com.dphong.likescash.api.posts.model.SubmitPostRequest
 import com.dphong.likescash.api.posts.model.SubmitPostResponse
 import com.dphong.likescash.api.posts.model.SubmitPostStatus
 import com.dphong.likescash.api.posts.service.SubmitPostService
-import com.dphong.likescash.common.reponse.StatusDataResult
+import com.dphong.likescash.common.response.StatusDataResult
 import com.dphong.likescash.domain.posts.PostPlatform
 import com.dphong.likescash.mock.FakeAuthentication
 import com.fasterxml.jackson.databind.ObjectMapper

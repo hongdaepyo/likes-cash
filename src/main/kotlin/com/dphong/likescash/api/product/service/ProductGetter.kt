@@ -2,7 +2,7 @@ package com.dphong.likescash.api.product.service
 
 import com.dphong.likescash.api.product.model.ProductDetails
 import com.dphong.likescash.common.exception.ResourceNotFoundException
-import com.dphong.likescash.common.reponse.DataResult
+import com.dphong.likescash.common.response.DataResult
 import com.dphong.likescash.repository.product.ProductRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
