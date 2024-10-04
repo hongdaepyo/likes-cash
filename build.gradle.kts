@@ -31,6 +31,7 @@ repositories {
 val nimbusJoseVersion = "9.40"
 val mysqlConnectorVersion = "9.0.0"
 val springCloudAwsVersion = "3.2.0"
+val mockitoKotlinVersion = "5.4.0"
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
@@ -60,6 +61,9 @@ dependencies {
 	testImplementation("org.testcontainers:junit-jupiter")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+	// https://mvnrepository.com/artifact/org.mockito.kotlin/mockito-kotlin
+	testImplementation("org.mockito.kotlin:mockito-kotlin:$mockitoKotlinVersion")
+
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.boot:spring-boot-testcontainers")
