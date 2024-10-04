@@ -3,7 +3,7 @@ package com.dphong.likescash.api.member.service
 import com.dphong.likescash.api.member.model.SignUpMemberRequest
 import com.dphong.likescash.api.member.model.SignUpMemberResponse
 import com.dphong.likescash.api.member.model.SignUpMemberStatus
-import com.dphong.likescash.common.reponse.StatusDataResult
+import com.dphong.likescash.common.response.StatusDataResult
 import com.dphong.likescash.domain.member.Member
 import com.dphong.likescash.repository.member.MemberRepository
 import org.springframework.security.crypto.password.PasswordEncoder

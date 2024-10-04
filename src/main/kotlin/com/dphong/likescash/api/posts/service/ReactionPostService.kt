@@ -2,7 +2,7 @@ package com.dphong.likescash.api.posts.service
 
 import com.dphong.likescash.api.posts.model.ReactionPostResponse
 import com.dphong.likescash.api.posts.model.ReactionPostStatus
-import com.dphong.likescash.common.reponse.StatusDataResult
+import com.dphong.likescash.common.response.StatusDataResult
 import com.dphong.likescash.domain.posts.Post
 import com.dphong.likescash.repository.member.MemberRepository
 import com.dphong.likescash.repository.posts.LikesRepository

@@ -2,7 +2,7 @@ package com.dphong.likescash.api.posts.controller
 
 import com.dphong.likescash.api.posts.model.PostDetails
 import com.dphong.likescash.api.posts.service.PostGetter
-import com.dphong.likescash.common.reponse.DataResult
+import com.dphong.likescash.common.response.DataResult
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping

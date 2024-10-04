@@ -3,7 +3,7 @@ package com.dphong.likescash.api.product.service
 import com.dphong.likescash.api.product.model.RegisterProductRequest
 import com.dphong.likescash.api.product.model.RegisterProductResponse
 import com.dphong.likescash.api.product.model.RegisterProductStatus
-import com.dphong.likescash.common.reponse.StatusDataResult
+import com.dphong.likescash.common.response.StatusDataResult
 import com.dphong.likescash.domain.member.MemberRole
 import com.dphong.likescash.repository.member.MemberRepository
 import com.dphong.likescash.repository.product.ProductRepository

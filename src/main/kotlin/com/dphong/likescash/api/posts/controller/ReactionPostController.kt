@@ -5,7 +5,7 @@ import com.dphong.likescash.api.posts.model.ReactionPostStatus
 import com.dphong.likescash.api.posts.service.ReactionPostService
 import com.dphong.likescash.common.annotation.LoginMember
 import com.dphong.likescash.common.config.auth.MemberFacade
-import com.dphong.likescash.common.reponse.StatusDataResult
+import com.dphong.likescash.common.response.StatusDataResult
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 

@@ -1,4 +1,4 @@
-package com.dphong.likescash.common.reponse
+package com.dphong.likescash.common.response
 
 import org.springframework.http.ResponseEntity
 
