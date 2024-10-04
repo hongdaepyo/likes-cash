@@ -29,5 +29,19 @@ spring:
       host: localhost
       port: 6379
 
+  cloud:
+    aws:
+      credentials:
+        access-key: test-access-key
+        secret-key: test-secret-key
+      endpoint: http://localhost:9000
+      region:
+        static: ap-northeast-2
+
 jwt:
   secret: TTBHC09Duq2cQjoyDFyLLXBGfkSfwaDZ3kcQN1spbk0=
+
+aws:
+  s3:
+    bucket: likescash
+    subdirectory: local

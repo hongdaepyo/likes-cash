@@ -30,6 +30,7 @@ repositories {
 
 val nimbusJoseVersion = "9.40"
 val mysqlConnectorVersion = "9.0.0"
+val springCloudAwsVersion = "3.2.0"
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
@@ -42,6 +43,8 @@ dependencies {
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
+    implementation("io.awspring.cloud:spring-cloud-aws-starter-s3:$springCloudAwsVersion")
+
 	// https://mvnrepository.com/artifact/com.nimbusds/nimbus-jose-jwt
 	implementation("com.nimbusds:nimbus-jose-jwt:$nimbusJoseVersion")
 
@@ -53,6 +56,7 @@ dependencies {
 
 	// test
 	runtimeOnly("com.h2database:h2")
+	testImplementation("org.testcontainers:localstack")
 	testImplementation("org.testcontainers:junit-jupiter")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
