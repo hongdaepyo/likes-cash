@@ -3,6 +3,7 @@ package com.dphong.likescash.api.posts.service
 import com.dphong.likescash.api.posts.model.ReactionPostResponse
 import com.dphong.likescash.api.posts.model.ReactionPostStatus
 import com.dphong.likescash.common.response.StatusDataResult
+import com.dphong.likescash.domain.member.User
 import com.dphong.likescash.domain.posts.Post
 import com.dphong.likescash.repository.member.MemberRepository
 import com.dphong.likescash.repository.posts.LikesRepository
@@ -19,7 +20,7 @@ class ReactionPostService(
 
     @Transactional
     fun likes(memberId: Long, postId: Long): StatusDataResult<ReactionPostStatus, ReactionPostResponse> {
-        val member = memberRepository.findByIdOrNull(memberId)
+        val member = memberRepository.findByIdOrNull(memberId) as? User
             ?: return StatusDataResult(ReactionPostStatus.MEMBER_NOT_FOUND)
         val post: Post = postRepository.findByIdOrNull(postId)
             ?: return StatusDataResult(ReactionPostStatus.POST_NOT_FOUND)

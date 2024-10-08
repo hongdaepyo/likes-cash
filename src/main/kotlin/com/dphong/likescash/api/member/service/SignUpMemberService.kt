@@ -4,7 +4,9 @@ import com.dphong.likescash.api.member.model.SignUpMemberRequest
 import com.dphong.likescash.api.member.model.SignUpMemberResponse
 import com.dphong.likescash.api.member.model.SignUpMemberStatus
 import com.dphong.likescash.common.response.StatusDataResult
-import com.dphong.likescash.domain.member.Member
+import com.dphong.likescash.domain.member.MemberRole
+import com.dphong.likescash.domain.member.Seller
+import com.dphong.likescash.domain.member.User
 import com.dphong.likescash.repository.member.MemberRepository
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
@@ -24,7 +26,20 @@ class SignUpMemberService(
         }
 
         val encodedPassword = passwordEncoder.encode(request.password)
-        val savedMember = memberRepository.save(Member(request.username, encodedPassword, request.name))
+        val savedMember = saveMember(request, encodedPassword)
         return StatusDataResult(SignUpMemberStatus.SUCCESS, SignUpMemberResponse.of(savedMember))
     }
+
+    private fun saveMember(request: SignUpMemberRequest, encodedPassword: String) =
+        when (request.role) {
+            MemberRole.SELLER -> memberRepository.save(
+                Seller(username = request.username, password = encodedPassword, name = request.name)
+            )
+
+            MemberRole.USER -> memberRepository.save(
+                User(username = request.username, password = encodedPassword, name = request.name)
+            )
+
+            MemberRole.ADMIN -> throw IllegalArgumentException("ADMIN cannot be created")
+        }
 }
