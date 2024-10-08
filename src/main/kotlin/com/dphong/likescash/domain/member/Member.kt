@@ -1,13 +1,13 @@
 package com.dphong.likescash.domain.member
 
 import com.dphong.likescash.domain.BaseEntity
-import com.dphong.likescash.domain.posts.Likes
-import com.dphong.likescash.domain.posts.Post
 import jakarta.persistence.*
 
-@Table(name = "members")
+@DiscriminatorColumn(name = "memberType")
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "Members")
 @Entity
-class Member(
+abstract class Member(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
@@ -16,10 +16,7 @@ class Member(
     var name: String? = null,
     @Enumerated(EnumType.STRING)
     val role: MemberRole = MemberRole.USER,
-): BaseEntity<Long>() {
+) : BaseEntity<Long>() {
     constructor(username: String, password: String, name: String) : this(0, username, password, name, MemberRole.USER)
 
-    fun likes(post: Post): Likes {
-        return Likes(memberId = this.id!!, postId = post.id!!)
-    }
 }

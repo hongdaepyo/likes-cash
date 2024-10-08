@@ -1,3 +1,5 @@
 package com.dphong.likescash.api.member.model
 
-data class SignUpMemberRequest(val username: String, val password: String, val name: String)
+import com.dphong.likescash.domain.member.MemberRole
+
+data class SignUpMemberRequest(val username: String, val password: String, val name: String, val role: MemberRole)

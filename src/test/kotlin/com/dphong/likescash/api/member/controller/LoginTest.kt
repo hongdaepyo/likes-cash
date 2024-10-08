@@ -1,7 +1,7 @@
 package com.dphong.likescash.api.member.controller
 
 import com.dphong.likescash.IntegrationTest
-import com.dphong.likescash.domain.member.Member
+import com.dphong.likescash.domain.member.User
 import com.dphong.likescash.repository.member.MemberRepository
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
@@ -23,7 +23,7 @@ class LoginTest(
         // given
         val username = "testUsername"
         val password = "testPassword"
-        memberRepository.save(Member(username, passwordEncoder.encode(password), "test"))
+        memberRepository.save(User(null, username, passwordEncoder.encode(password), "test"))
 
         mockMvc.perform(
             MockMvcRequestBuilders.post("/login")
