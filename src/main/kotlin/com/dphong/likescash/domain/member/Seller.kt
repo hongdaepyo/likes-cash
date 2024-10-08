@@ -1,8 +1,7 @@
 package com.dphong.likescash.domain.member
 
-import jakarta.persistence.DiscriminatorValue
-import jakarta.persistence.Entity
-import jakarta.persistence.Table
+import com.dphong.likescash.domain.seller.SellerDeposit
+import jakarta.persistence.*
 
 @Table(name = "Sellers")
 @Entity
@@ -12,4 +11,11 @@ class Seller(
     username: String,
     password: String,
     name: String?
-) : Member(id, username, password, name, MemberRole.SELLER)
+) : Member(id, username, password, name, MemberRole.SELLER) {
+    @OneToOne(mappedBy = "seller", cascade = [CascadeType.ALL])
+    var deposit: SellerDeposit = SellerDeposit(seller = this)
+
+    fun charge(amount: Long) {
+        deposit.charge(amount)
+    }
+}
