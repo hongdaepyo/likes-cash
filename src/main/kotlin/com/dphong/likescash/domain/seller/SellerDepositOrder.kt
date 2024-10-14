@@ -22,4 +22,9 @@ class SellerDepositOrder(
     val chargedAt: Instant? = null
     var status: SellerDepositOrderStatus = SellerDepositOrderStatus.ORDERED
 
+    companion object {
+        fun of(seller: Seller, amount: Long, orderNumber: String): SellerDepositOrder {
+            return SellerDepositOrder(null, seller, amount, orderNumber)
+        }
+    }
 }
