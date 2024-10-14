@@ -34,7 +34,7 @@ class SellerDepositServiceTest {
         // given
         val seller = memberRepository.save(MemberFixture.seller()) as Seller
         orderRepository.save(SellerDepositOrder(1L, seller, 1000, "testOrderNumber"))
-        val request = SellerDepositRequest("testOrderNumber", 1000L)
+        val request = SellerDepositRequest("testOrderNumber")
 
         // when
         val result = service.charge(1L, request)
@@ -49,7 +49,7 @@ class SellerDepositServiceTest {
         // given
         memberRepository.save(MemberFixture.seller()) as Seller
         val invalidSellerId = -1L
-        val request = SellerDepositRequest("testOrderNumber", 1000L)
+        val request = SellerDepositRequest("testOrderNumber")
 
         // when
         // then
@@ -63,7 +63,7 @@ class SellerDepositServiceTest {
         val seller = memberRepository.save(MemberFixture.seller()) as Seller
         orderRepository.save(SellerDepositOrder(1L, seller, 1000, "testOrderNumber"))
         val otherOrderNumber = "otherOrderNumber"
-        val request = SellerDepositRequest(otherOrderNumber, 1000L)
+        val request = SellerDepositRequest(otherOrderNumber)
 
         // when
         // then
