@@ -8,6 +8,7 @@ import com.dphong.likescash.common.annotation.LoginMember
 import com.dphong.likescash.common.config.auth.MemberFacade
 import com.dphong.likescash.common.response.CommonStatus
 import com.dphong.likescash.common.response.StatusDataResult
+import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
@@ -19,7 +20,7 @@ class SellerDepositController(
 
     @PostMapping("/order")
     fun orderDeposit(
-        @RequestBody request: SellerDepositOrderRequest,
+        @Valid @RequestBody request: SellerDepositOrderRequest,
         @LoginMember member: MemberFacade
     ): ResponseEntity<StatusDataResult<CommonStatus, SellerDepositOrderResponse>> =
         sellerDepositService.order(member.memberId, request).toResponseEntity()

@@ -14,6 +14,7 @@ import com.dphong.likescash.repository.SellerDepositOrderRepository
 import com.dphong.likescash.repository.member.MemberRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.util.*
 
 @Service
 class SellerDepositService(
@@ -24,7 +25,7 @@ class SellerDepositService(
     @Transactional
     fun order(sellerId: Long, request: SellerDepositOrderRequest): StatusDataResult<CommonStatus, SellerDepositOrderResponse> {
         // TODO: pg사로 transactionId 검증
-        val orderNumber = ""
+        val orderNumber = UUID.randomUUID().toString()
         val seller = memberRepository.findByIdOrNull(sellerId) as? Seller
             ?: throw ResourceNotFoundException("Member", sellerId)
 
