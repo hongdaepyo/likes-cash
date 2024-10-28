@@ -2,6 +2,7 @@ package com.dphong.likescash.mock
 
 import com.dphong.likescash.domain.seller.SellerDepositOrder
 import com.dphong.likescash.repository.SellerDepositOrderRepository
+import org.springframework.data.domain.Pageable
 
 class FakeSellerDepositOrderRepository : SellerDepositOrderRepository, AbstractFakeRepository<SellerDepositOrder>() {
     override fun findByOrderNumber(orderNumber: String): SellerDepositOrder? =
@@ -24,4 +25,8 @@ class FakeSellerDepositOrderRepository : SellerDepositOrderRepository, AbstractF
         return sellerDepositOrder
     }
 
+    override fun findAllBySellerId(sellerId: Long, pagination: Pageable): List<SellerDepositOrder> {
+        return data.filter { it.seller.id == sellerId }
+            .slice(IntRange(pagination.offset.toInt(), (pagination.offset + pagination.pageSize - 1).toInt()))
+    }
 }

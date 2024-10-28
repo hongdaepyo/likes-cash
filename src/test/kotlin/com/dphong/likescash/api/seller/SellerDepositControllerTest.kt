@@ -3,7 +3,9 @@ package com.dphong.likescash.api.seller
 import com.dphong.likescash.BaseWebMvcTest
 import com.dphong.likescash.api.seller.model.*
 import com.dphong.likescash.common.response.CommonStatus
+import com.dphong.likescash.common.response.DataResult
 import com.dphong.likescash.common.response.StatusDataResult
+import com.dphong.likescash.domain.seller.SellerDepositOrderStatus.ORDERED
 import com.dphong.likescash.mock.FakeAuthentication
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.junit.jupiter.api.Test
@@ -13,15 +15,44 @@ import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.http.MediaType
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.test.web.servlet.MockMvc
+import org.springframework.test.web.servlet.get
 import org.springframework.test.web.servlet.post
 import org.springframework.test.web.servlet.put
+import org.springframework.util.LinkedMultiValueMap
+import java.time.Instant
 
 @BaseWebMvcTest([SellerDepositController::class])
 class SellerDepositControllerTest(
     private val mockMvc: MockMvc,
     @MockBean private val sellerDepositService: SellerDepositService,
+    @MockBean private val sellerDepositOrderGetter: SellerDepositOrderGetter,
     private val objectMapper: ObjectMapper
 ) {
+
+    @Test
+    fun `예치금을 충전내역을 조회한다`() {
+        // given
+        SecurityContextHolder.getContext().authentication = FakeAuthentication.SELLER.authentication
+        given(sellerDepositOrderGetter.getOrders(any(), any())).willReturn(
+            DataResult(
+                listOf(
+                    SellerDepositOrderItemResponse(1, ORDERED, 1000, "testOrderNumber", Instant.now())
+                )
+            )
+        )
+
+        // when
+        // then
+        mockMvc.get("/v1/sellers/deposit") {
+            params = LinkedMultiValueMap<String, String>().apply {
+                add("page", "0")
+                add("size", "10")
+            }
+        }.andExpect {
+            status { isOk() }
+            jsonPath("$.data[0].orderNumber") { value("testOrderNumber") }
+        }
+    }
 
     @Test
     fun `예치금 충전을 주문한다`() {
@@ -46,7 +77,7 @@ class SellerDepositControllerTest(
     @Test
     fun `예치금을 충전한다`() {
         // given
-        SecurityContextHolder.getContext().authentication = FakeAuthentication.MEMBER.authentication
+        SecurityContextHolder.getContext().authentication = FakeAuthentication.SELLER.authentication
         val request = SellerDepositRequest("testOrderNumber")
         given(sellerDepositService.charge(any(), any())).willReturn(
             StatusDataResult(CommonStatus.SUCCESS, SellerDepositResponse(1, 1000))
